@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "education": "Formación",
+    "contact": "Contacto",
+    "resume": "CV"
+  },
+  "hero": {
+    "available": "Abierto a oportunidades",
+    "limited": "Disponibilidad selectiva",
+    "closed": "No disponible",
+    "cta_projects": "Ver mi trabajo",
+    "cta_contact": "Contactar",
+    "stats_experience": "Prácticas",
+    "stats_tech": "Tecnologías",
+    "stats_languages": "Idiomas"
+  },
+  "about": {
+    "label": "Sobre mí",
+    "heading": "Construyendo sistemas que funcionan,",
+    "heading_accent": "en cada capa.",
+    "terminal_title": "~/info.sh",
+    "field_role": "rol",
+    "field_location": "ubicación",
+    "field_status": "estado",
+    "field_languages": "idiomas",
+    "field_github": "github",
+    "field_linkedin": "linkedin",
+    "status_open": "✓ abierto a oportunidades",
+    "languages_value": "ES · GL · EN (C1) · DE (A1)"
+  },
+  "experience": {
+    "label": "Experiencia",
+    "heading": "Dónde he trabajado",
+    "type_internship": "Prácticas",
+    "type_fulltime": "Jornada completa",
+    "type_contract": "Contrato",
+    "type_freelance": "Freelance"
+  },
+  "skills": {
+    "label": "Habilidades",
+    "heading": "Stack técnico",
+    "level_1": "Iniciado",
+    "level_2": "Básico",
+    "level_3": "Competente",
+    "level_4": "Avanzado",
+    "level_5": "Experto",
+    "filter_all": "Todas"
+  },
+  "education": {
+    "label": "Formación",
+    "heading": "Trayectoria académica",
+    "degrees": "Titulaciones",
+    "certs": "Certificaciones",
+    "view_linkedin": "Perfil completo en LinkedIn ↗"
+  },
+  "contact": {
+    "label": "Contacto",
+    "heading": "Trabajemos juntos",
+    "body": "Actualmente abierto a puestos de trabajo, prácticas o colaboraciones interesantes. Basado en Galicia, España — abierto a posiciones remotas e internacionales (Países Bajos, UK, Suiza son bienvenidos).",
+    "email_label": "Enviar email",
+    "linkedin_label": "LinkedIn",
+    "github_label": "GitHub",
+    "copy_email": "Copiar email",
+    "copied": "¡Copiado!"
+  },
+  "footer": {
+    "built": "Construido con Next.js · Desplegado en Vercel"
+  },
+  "lang_switch": "EN"
+}

@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: 'Source Sans 3', system-ui, sans-serif; }
+
+  ::selection {
+    background: rgba(196, 98, 45, 0.25);
+    color: #F2EEE3;
+  }
+
+  ::-webkit-scrollbar { width: 5px; background: #15140F; }
+  ::-webkit-scrollbar-thumb { background: #403B2C; border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: #C4622D; }
+
+  * { box-sizing: border-box; }
+}
+
+@layer components {
+  .font-display { font-family: 'Fraunces', Georgia, serif; }
+  .font-data { font-family: 'IBM Plex Mono', monospace; }
+
+  .section-wrap {
+    @apply max-w-4xl mx-auto px-6 sm:px-10 py-24 sm:py-32;
+  }
+
+  /* Reference number — replaces the generic "section label" pattern */
+  .ref-mark {
+    @apply font-data text-[11px] tracking-[0.15em] text-rust mb-4 flex items-baseline gap-2;
+  }
+  .ref-mark::before {
+    content: '§';
+    opacity: 0.6;
+  }
+
+  /* Hand-drawn style rule instead of glowing accent line */
+  .ledger-rule {
+    @apply w-full h-px bg-line mb-12 relative;
+  }
+  .ledger-rule::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 48px;
+    height: 3px;
+    background: #C4622D;
+  }
+
+  /* Card — flat plate, no glow, hairline border that thickens on hover */
+  .plate {
+    @apply bg-plate border border-line p-6 sm:p-7 transition-colors duration-200;
+  }
+  .plate:hover {
+    border-color: #C4622D;
+  }
+
+  /* Tag — ledger stamp style, not pill-shaped */
+  .stamp-tag {
+    @apply inline-flex items-center font-data text-[10px] tracking-wide
+           px-2 py-1 border border-line2 text-ink uppercase;
+  }
+
+  /* Index number for list items */
+  .idx-number {
+    @apply font-data text-[11px] text-rust/70 tabular-nums;
+  }
+
+  .btn-rust {
+    @apply inline-flex items-center gap-2 px-5 py-2.5
+           bg-rust text-paper font-body font-semibold text-sm
+           transition-colors duration-200;
+  }
+  .btn-rust:hover { background: #DB6E33; }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-5 py-2.5
+           border border-line2 text-ink font-body text-sm
+           transition-colors duration-200;
+  }
+  .btn-outline:hover {
+    @apply border-rust text-paper;
+  }
+
+  /* Proficiency dots — replaces gradient progress bars */
+  .dot-row {
+    @apply flex items-center gap-1;
+  }
+  .dot {
+    @apply w-[7px] h-[7px] rounded-full bg-line2;
+  }
+  .dot-filled {
+    @apply w-[7px] h-[7px] rounded-full bg-rust;
+  }
+
+  .nav-surface {
+    background: rgba(21, 20, 15, 0.92);
+    border-bottom: 1px solid #332F24;
+  }
+}
+
+/* Subtle paper-grain texture instead of dot-grid/glow */
+.grain {
+  position: relative;
+}
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; }
+}

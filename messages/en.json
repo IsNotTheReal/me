@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "hero": {
+    "available": "Open to opportunities",
+    "limited": "Selectively available",
+    "closed": "Not available",
+    "cta_projects": "View my work",
+    "cta_contact": "Get in touch",
+    "stats_experience": "Internships",
+    "stats_tech": "Technologies",
+    "stats_languages": "Languages"
+  },
+  "about": {
+    "label": "About",
+    "heading": "Building things that work,",
+    "heading_accent": "at every layer.",
+    "terminal_title": "~/info.sh",
+    "field_role": "role",
+    "field_location": "location",
+    "field_status": "status",
+    "field_languages": "languages",
+    "field_github": "github",
+    "field_linkedin": "linkedin",
+    "status_open": "✓ open to work",
+    "languages_value": "ES · GL · EN (C1) · DE (A1)"
+  },
+  "experience": {
+    "label": "Experience",
+    "heading": "Where I've worked",
+    "type_internship": "Internship",
+    "type_fulltime": "Full-time",
+    "type_contract": "Contract",
+    "type_freelance": "Freelance"
+  },
+  "skills": {
+    "label": "Skills",
+    "heading": "Technical stack",
+    "level_1": "Familiar",
+    "level_2": "Basic",
+    "level_3": "Proficient",
+    "level_4": "Advanced",
+    "level_5": "Expert",
+    "filter_all": "All"
+  },
+  "education": {
+    "label": "Education",
+    "heading": "Academic background",
+    "degrees": "Degrees",
+    "certs": "Certifications",
+    "view_linkedin": "Full profile on LinkedIn ↗"
+  },
+  "contact": {
+    "label": "Contact",
+    "heading": "Let's work together",
+    "body": "Currently open to full-time roles, internships, or interesting collaborations. Based in Galicia, Spain — open to remote and international positions (Netherlands, UK, Switzerland welcome).",
+    "email_label": "Email me",
+    "linkedin_label": "LinkedIn",
+    "github_label": "GitHub",
+    "copy_email": "Copy email",
+    "copied": "Copied!"
+  },
+  "footer": {
+    "built": "Built with Next.js · Deployed on Vercel"
+  },
+  "lang_switch": "ES"
+}
