@@ -43,9 +43,6 @@ export default function EducationSection({
         {/* Certification + LinkedIn — lightweight closing line, no longer a full subsection */}
         <ScrollReveal>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center border-t border-hairline2 pt-10">
-            <span className="font-text text-[14px] text-gray2">
-              {t('drone_name')} — {t('drone_issuer')}
-            </span>
             <a
               href="https://www.linkedin.com/in/alexandre-mayo-esteiro/"
               target="_blank"
