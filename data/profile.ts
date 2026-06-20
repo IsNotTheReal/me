@@ -15,7 +15,7 @@ export const profile: Profile = {
     es: 'Desarrollador de Software Junior especializado en Ciberseguridad e Infraestructura IT. Trayectoria que combina desarrollo de aplicaciones con administración de sistemas y redes, con experiencia internacional consolidada en Dublín. Aprendizaje continuo, adaptación a entornos tecnológicos dinámicos y enfoque orientado a la resolución de problemas.',
   },
   location: 'Santiago de Compostela, Galicia, España',
-  email: 'alexandre.mayo.esteiro@gmail.com',
+  email: 'contact@alexandremayo.com',
   availability: 'open',
   links: {
     github: 'https://github.com/IsNotTheReal',
