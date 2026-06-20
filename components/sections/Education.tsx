@@ -46,7 +46,6 @@ export default function EducationSection({
             <span className="font-text text-[14px] text-gray2">
               {t('drone_name')} — {t('drone_issuer')}
             </span>
-            <span className="text-gray3" aria-hidden>·</span>
             <a
               href="https://www.linkedin.com/in/alexandre-mayo-esteiro/"
               target="_blank"
