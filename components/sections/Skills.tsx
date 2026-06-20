@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useInView } from '@/lib/useInView'
 import { pick } from '@/data'
-import type { SkillCategory, Locale, SkillLevel } from '@/types'
+import ScrollReveal from '@/components/ui/ScrollReveal'
+import type { SkillCategory, Locale } from '@/types'
 
-const LEVEL_KEYS = ['level_1', 'level_2', 'level_3', 'level_4', 'level_5'] as const
+const LEVEL_LABEL_SHORT: Record<number, string> = {
+  1: 'Basic', 2: 'Basic', 3: 'Proficient', 4: 'Advanced', 5: 'Expert',
+}
 
 export default function Skills({
   categories,
@@ -16,104 +18,55 @@ export default function Skills({
   locale: Locale
 }) {
   const t = useTranslations('skills')
-  const [active, setActive] = useState<string>('all')
+  const [active, setActive] = useState<string>(categories[0]?.id ?? '')
 
-  const shown = active === 'all' ? categories : categories.filter((c) => c.id === active)
+  const current = categories.find((c) => c.id === active) ?? categories[0]
 
   return (
-    <section id="skills" className="border-b border-line">
-      <div className="section-wrap">
-        <div className="ref-mark">{t('label')}</div>
-        <div className="ledger-rule" />
+    <section id="skills" className="bg-black hairline-divider">
+      <div className="section-wrap-wide">
+        <ScrollReveal>
+          <p className="eyebrow">{t('label')}</p>
+        </ScrollReveal>
+        <ScrollReveal delay={80}>
+          <h2 className="headline mb-14">{t('heading')}</h2>
+        </ScrollReveal>
 
-        <h2 className="font-display text-3xl sm:text-4xl text-paper mb-8">
-          {t('heading')}
-        </h2>
+        <ScrollReveal delay={160}>
+          {/* Apple's tab-strip pattern, like their "Compare" nav (Design / Camera / Chip...) */}
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-14 border-b border-hairline2 pb-px">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActive(cat.id)}
+                className={`font-text text-[15px] pb-4 border-b-2 transition-colors ${
+                  active === cat.id
+                    ? 'text-gray1 border-accent'
+                    : 'text-gray3 border-transparent hover:text-gray2'
+                }`}
+              >
+                {pick(cat.label, locale)}
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
 
-        <div className="flex flex-wrap gap-2 mb-12">
-          <FilterTab label={t('filter_all')} active={active === 'all'} onClick={() => setActive('all')} />
-          {categories.map((cat) => (
-            <FilterTab
-              key={cat.id}
-              label={pick(cat.label, locale)}
-              active={active === cat.id}
-              onClick={() => setActive(cat.id)}
-            />
-          ))}
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-6">
-          {shown.map((cat) => (
-            <SkillCard key={cat.id} category={cat} locale={locale} tLevel={(k) => t(k)} />
-          ))}
-        </div>
+        {/* Tech-spec table — Apple's actual spec sheet typography */}
+        {current && (
+          <ScrollReveal delay={220}>
+            <div className="max-w-2xl mx-auto divide-y divide-hairline2">
+              {current.skills.map((skill) => (
+                <div key={skill.name} className="flex items-center justify-between py-4">
+                  <span className="font-text text-[17px] text-gray1">{skill.name}</span>
+                  <span className="font-text text-[13px] text-gray3">
+                    {LEVEL_LABEL_SHORT[skill.level]}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        )}
       </div>
     </section>
-  )
-}
-
-function FilterTab({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`font-data text-[10px] tracking-wider px-3 py-1.5 border transition-colors duration-150 uppercase ${
-        active
-          ? 'border-rust bg-rust/10 text-rust'
-          : 'border-line text-inkDim hover:border-line2 hover:text-ink'
-      }`}
-    >
-      {label}
-    </button>
-  )
-}
-
-function SkillCard({
-  category,
-  locale,
-  tLevel,
-}: {
-  category: SkillCategory
-  locale: Locale
-  tLevel: (k: (typeof LEVEL_KEYS)[number]) => string
-}) {
-  const { ref, inView } = useInView<HTMLDivElement>()
-
-  return (
-    <div ref={ref} className="plate">
-      <h3 className="font-data text-[10px] tracking-widest uppercase mb-5 text-paper2 pb-3 border-b border-line">
-        {pick(category.label, locale)}
-      </h3>
-
-      <ul className="space-y-3.5">
-        {category.skills.map((skill) => (
-          <li key={skill.name} className="flex items-center justify-between gap-3">
-            <span className="text-[13.5px] text-paper2">{skill.name}</span>
-            <ProficiencyDots level={skill.level} active={inView} label={tLevel(LEVEL_KEYS[skill.level - 1])} />
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-function ProficiencyDots({
-  level,
-  active,
-  label,
-}: {
-  level: SkillLevel
-  active: boolean
-  label: string
-}) {
-  return (
-    <span className="dot-row" title={label} aria-label={label}>
-      {[1, 2, 3, 4, 5].map((n) => (
-        <span
-          key={n}
-          className={n <= level && active ? 'dot-filled' : 'dot'}
-          style={{ transitionDelay: `${n * 60}ms`, transition: 'background-color 0.3s ease' }}
-        />
-      ))}
-    </span>
   )
 }

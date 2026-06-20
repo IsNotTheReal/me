@@ -5,9 +5,9 @@ export default function NotFound() {
     <html lang="es">
       <body
         style={{
-          background: '#15140F',
-          color: '#F2EEE3',
-          fontFamily: 'Georgia, serif',
+          background: '#000000',
+          color: '#F5F5F7',
+          fontFamily: '-apple-system, Inter, system-ui, sans-serif',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -18,20 +18,19 @@ export default function NotFound() {
         <div style={{ textAlign: 'center' }}>
           <p
             style={{
-              fontFamily: 'monospace',
-              color: '#C4622D',
-              fontSize: '12px',
-              letterSpacing: '0.15em',
+              color: '#A1A1A6',
+              fontSize: '15px',
+              fontWeight: 600,
               marginBottom: '12px',
             }}
           >
-            § 404 — NOT FOUND
+            404
           </p>
-          <h1 style={{ fontSize: '28px', fontWeight: 500, color: '#F2EEE3', marginBottom: '20px' }}>
-            This page isn&apos;t on file.
+          <h1 style={{ fontSize: '32px', fontWeight: 600, color: '#F5F5F7', marginBottom: '20px', letterSpacing: '-0.01em' }}>
+            This page isn&apos;t available.
           </h1>
-          <Link href="/es" style={{ color: '#C4622D', fontSize: '14px', fontFamily: 'monospace' }}>
-            ← back to index
+          <Link href="/es" style={{ color: '#30D158', fontSize: '17px' }}>
+            Back to home ›
           </Link>
         </div>
       </body>

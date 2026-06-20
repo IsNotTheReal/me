@@ -3,120 +3,106 @@
 @tailwind utilities;
 
 @layer base {
-  html { font-family: 'Source Sans 3', system-ui, sans-serif; }
-
-  ::selection {
-    background: rgba(196, 98, 45, 0.25);
-    color: #F2EEE3;
+  html {
+    font-family: -apple-system, 'SF Pro Text', 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
-  ::-webkit-scrollbar { width: 5px; background: #15140F; }
-  ::-webkit-scrollbar-thumb { background: #403B2C; border-radius: 0; }
-  ::-webkit-scrollbar-thumb:hover { background: #C4622D; }
+  ::selection {
+    background: rgba(0, 113, 227, 0.25);
+    color: #F5F5F7;
+  }
+
+  ::-webkit-scrollbar { width: 6px; background: #000; }
+  ::-webkit-scrollbar-thumb { background: #424245; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #6E6E73; }
 
   * { box-sizing: border-box; }
 }
 
 @layer components {
-  .font-display { font-family: 'Fraunces', Georgia, serif; }
-  .font-data { font-family: 'IBM Plex Mono', monospace; }
+  .font-sf { font-family: 'SF Pro Display', -apple-system, 'Inter', 'Helvetica Neue', system-ui, sans-serif; }
 
+  /* Apple's actual section rhythm — generous, centered, breathing room */
   .section-wrap {
-    @apply max-w-4xl mx-auto px-6 sm:px-10 py-24 sm:py-32;
+    @apply max-w-[980px] mx-auto px-6 sm:px-8 py-24 sm:py-36;
   }
 
-  /* Reference number — replaces the generic "section label" pattern */
-  .ref-mark {
-    @apply font-data text-[11px] tracking-[0.15em] text-rust mb-4 flex items-baseline gap-2;
-  }
-  .ref-mark::before {
-    content: '§';
-    opacity: 0.6;
+  .section-wrap-wide {
+    @apply max-w-[1100px] mx-auto px-6 sm:px-8 py-24 sm:py-36;
   }
 
-  /* Hand-drawn style rule instead of glowing accent line */
-  .ledger-rule {
-    @apply w-full h-px bg-line mb-12 relative;
-  }
-  .ledger-rule::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: -1px;
-    width: 48px;
-    height: 3px;
-    background: #C4622D;
+  /* Apple's eyebrow text above headlines — tiny, gray, centered */
+  .eyebrow {
+    @apply font-text text-[15px] sm:text-[17px] text-gray2 font-semibold text-center mb-3;
   }
 
-  /* Card — flat plate, no glow, hairline border that thickens on hover */
-  .plate {
-    @apply bg-plate border border-line p-6 sm:p-7 transition-colors duration-200;
-  }
-  .plate:hover {
-    border-color: #C4622D;
+  /* Apple's headline pattern — bold black/white statement, centered */
+  .headline {
+    @apply font-sf text-headline font-semibold text-gray1 text-center;
   }
 
-  /* Tag — ledger stamp style, not pill-shaped */
-  .stamp-tag {
-    @apply inline-flex items-center font-data text-[10px] tracking-wide
-           px-2 py-1 border border-line2 text-ink uppercase;
+  /* Apple's "spec card" — number-first, label-second, no border until needed */
+  .spec-block {
+    @apply text-center;
+  }
+  .spec-number {
+    @apply font-sf text-4xl sm:text-5xl font-semibold text-gray1 leading-none;
+  }
+  .spec-label {
+    @apply font-text text-[13px] text-gray2 mt-2 leading-snug;
   }
 
-  /* Index number for list items */
-  .idx-number {
-    @apply font-data text-[11px] text-rust/70 tabular-nums;
+  /* Apple's nearly-invisible card — flat surface, no shadow until hover */
+  .panel {
+    @apply bg-surface rounded-2xl p-8 transition-colors duration-300;
+  }
+  .panel:hover {
+    background: #242426;
   }
 
-  .btn-rust {
-    @apply inline-flex items-center gap-2 px-5 py-2.5
-           bg-rust text-paper font-body font-semibold text-sm
-           transition-colors duration-200;
+  /* Apple's pill button */
+  .btn-pill {
+    @apply inline-flex items-center justify-center px-5 py-2.5
+           bg-accent text-white font-text font-medium text-[15px]
+           rounded-full transition-colors duration-200;
   }
-  .btn-rust:hover { background: #DB6E33; }
+  .btn-pill:hover { background: #3EE968; }
 
-  .btn-outline {
-    @apply inline-flex items-center gap-2 px-5 py-2.5
-           border border-line2 text-ink font-body text-sm
-           transition-colors duration-200;
+  .btn-pill-outline {
+    @apply inline-flex items-center justify-center px-5 py-2.5
+           border border-hairline text-gray1 font-text font-medium text-[15px]
+           rounded-full transition-colors duration-200;
   }
-  .btn-outline:hover {
-    @apply border-rust text-paper;
+  .btn-pill-outline:hover { @apply border-gray2; }
+
+  /* Apple's text link with chevron — "Learn more >" pattern */
+  .link-chevron {
+    @apply text-accent font-text text-[15px] inline-flex items-center gap-1
+           hover:underline transition-colors;
   }
 
-  /* Proficiency dots — replaces gradient progress bars */
-  .dot-row {
-    @apply flex items-center gap-1;
-  }
-  .dot {
-    @apply w-[7px] h-[7px] rounded-full bg-line2;
-  }
-  .dot-filled {
-    @apply w-[7px] h-[7px] rounded-full bg-rust;
+  /* Hairline divider, Apple-style: barely visible */
+  .hairline-divider {
+    @apply border-t border-hairline2;
   }
 
   .nav-surface {
-    background: rgba(21, 20, 15, 0.92);
-    border-bottom: 1px solid #332F24;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
   }
-}
 
-/* Subtle paper-grain texture instead of dot-grid/glow */
-.grain {
-  position: relative;
-}
-.grain::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Tag used for tech stack / skill chips — Apple's spec-sheet bullet style */
+  .spec-chip {
+    @apply font-text text-[13px] text-gray2 px-3 py-1 rounded-full border border-hairline2;
+  }
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.visible {
   opacity: 1;

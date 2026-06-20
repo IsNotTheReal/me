@@ -9,7 +9,6 @@ import Experience from '@/components/sections/Experience'
 import Skills from '@/components/sections/Skills'
 import Education from '@/components/sections/Education'
 import Contact from '@/components/sections/Contact'
-import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Locale } from '@/types'
 
 export function generateStaticParams() {
@@ -33,21 +32,11 @@ export default async function Page({
       <Nav locale={l} />
       <main>
         <Hero profile={profile} locale={l} />
-        <ScrollReveal>
-          <About profile={profile} locale={l} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <Experience items={experience} locale={l} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <Skills categories={skillCategories} locale={l} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <Education items={education} locale={l} />
-        </ScrollReveal>
-        <ScrollReveal>
-          <Contact profile={profile} />
-        </ScrollReveal>
+        <About profile={profile} locale={l} />
+        <Experience items={experience} locale={l} />
+        <Skills categories={skillCategories} locale={l} />
+        <Education items={education} locale={l} />
+        <Contact profile={profile} />
       </main>
       <Footer />
     </>

@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
-import { MapPin } from 'lucide-react'
 import { formatDateRange, getDuration, pick } from '@/data'
+import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Experience, Locale } from '@/types'
 
 export default function ExperienceSection({
@@ -13,64 +13,62 @@ export default function ExperienceSection({
   const t = useTranslations('experience')
 
   return (
-    <section id="experience" className="border-b border-line">
-      <div className="section-wrap">
-        <div className="ref-mark">{t('label')}</div>
-        <div className="ledger-rule" />
+    <section id="experience" className="bg-black hairline-divider">
+      <div className="section-wrap-wide">
+        <ScrollReveal>
+          <p className="eyebrow">{t('label')}</p>
+        </ScrollReveal>
+        <ScrollReveal delay={80}>
+          <h2 className="headline mb-16">{t('heading')}</h2>
+        </ScrollReveal>
 
-        <h2 className="font-display text-3xl sm:text-4xl text-paper mb-14">
-          {t('heading')}
-        </h2>
+        <div className="space-y-20">
+          {items.map((exp) => (
+            <ScrollReveal key={exp.id}>
+              <article className="grid md:grid-cols-[280px,1fr] gap-8 md:gap-16 items-start">
+                {/* Left column — Apple's "spec sheet" side, big and quiet */}
+                <div className="md:sticky md:top-32">
+                  <h3 className="font-sf text-2xl sm:text-3xl font-semibold text-gray1 leading-tight">
+                    {exp.company}
+                  </h3>
+                  <p className="font-text text-[15px] text-gray2 mt-2">
+                    {formatDateRange(exp.start, exp.end, locale)}
+                  </p>
+                  <p className="font-text text-[13px] text-gray3 mt-1">
+                    {getDuration(exp.start, exp.end, locale)} · {exp.location}
+                  </p>
+                </div>
 
-        <div className="space-y-12">
-          {items.map((exp, i) => (
-            <article key={exp.id} className="grid sm:grid-cols-[3rem,1fr] gap-4 sm:gap-8">
-              {/* Entry index, like a logbook page number */}
-              <div className="hidden sm:block">
-                <span className="idx-number">{String(i + 1).padStart(2, '0')}</span>
-              </div>
+                {/* Right column — the content panel */}
+                <div className="panel">
+                  <h4 className="font-sf text-xl font-semibold text-gray1 mb-1">
+                    {pick(exp.role, locale)}
+                  </h4>
+                  <p className="font-text text-[13px] text-accent mb-5">
+                    {t(`type_${exp.type}` as 'type_internship')}
+                  </p>
 
-              <div className="border-t border-line pt-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-                  <div>
-                    <h3 className="font-display text-xl text-paper leading-tight">
-                      {pick(exp.role, locale)}
-                    </h3>
-                    <p className="text-rust text-sm mt-1">{exp.company}</p>
+                  <p className="font-text text-[16px] text-gray2 leading-relaxed mb-6">
+                    {pick(exp.summary, locale)}
+                  </p>
+
+                  <ul className="space-y-3 mb-7">
+                    {exp.highlights.map((h, hi) => (
+                      <li key={hi} className="flex gap-3 font-text text-[15px] text-gray1 leading-relaxed">
+                        <span className="text-accent shrink-0 mt-0.5">＋</span>
+                        {pick(h, locale)}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tags.map((tag) => (
+                      <span key={tag} className="spec-chip">{tag}</span>
+                    ))}
                   </div>
-                  <div className="shrink-0 text-right font-data text-[11px] text-inkDim">
-                    <div>{formatDateRange(exp.start, exp.end, locale)}</div>
-                    <div className="mt-0.5">{getDuration(exp.start, exp.end, locale)}</div>
-                  </div>
                 </div>
-
-                <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span className="stamp-tag">{t(`type_${exp.type}` as 'type_internship')}</span>
-                  <span className="flex items-center gap-1.5 font-data text-[11px] text-inkDim">
-                    <MapPin size={11} /> {exp.location}
-                  </span>
-                </div>
-
-                <p className="text-ink text-sm leading-relaxed mb-5">
-                  {pick(exp.summary, locale)}
-                </p>
-
-                <ul className="space-y-2 mb-5">
-                  {exp.highlights.map((h, hi) => (
-                    <li key={hi} className="flex gap-3 text-[13.5px] text-paper2 leading-relaxed">
-                      <span className="text-rust shrink-0">—</span>
-                      {pick(h, locale)}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {exp.tags.map((tag) => (
-                    <span key={tag} className="stamp-tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </article>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

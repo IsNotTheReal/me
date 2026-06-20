@@ -1,12 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { formatDateRange, pick } from '@/data'
+import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Education, Locale } from '@/types'
-
-const LANGUAGE_ROWS = (locale: Locale) => [
-  { lang: 'Galego / Castellano', level: locale === 'es' ? 'Nativo' : 'Native', score: 5 },
-  { lang: 'English', level: 'C1', score: 4 },
-  { lang: 'Deutsch', level: 'A1', score: 1 },
-]
 
 export default function EducationSection({
   items,
@@ -18,86 +13,50 @@ export default function EducationSection({
   const t = useTranslations('education')
 
   return (
-    <section id="education" className="border-b border-line">
-      <div className="section-wrap">
-        <div className="ref-mark">{t('label')}</div>
-        <div className="ledger-rule" />
+    <section id="education" className="bg-black hairline-divider">
+      <div className="section-wrap-wide">
+        <ScrollReveal>
+          <p className="eyebrow">{t('label')}</p>
+        </ScrollReveal>
+        <ScrollReveal delay={80}>
+          <h2 className="headline mb-16">{t('heading')}</h2>
+        </ScrollReveal>
 
-        <h2 className="font-display text-3xl sm:text-4xl text-paper mb-14">
-          {t('heading')}
-        </h2>
-
-        <div className="grid md:grid-cols-[1.3fr,1fr] gap-12">
-          {/* Degrees — a flat table, not cards-with-icons */}
-          <div>
-            <h3 className="font-data text-[10px] tracking-widest text-inkDim uppercase mb-5">
-              {t('degrees')}
-            </h3>
-            <div className="border-t border-line">
-              {items.map((edu) => (
-                <div key={edu.id} className="py-5 border-b border-line">
-                  <div className="flex items-start justify-between gap-3 mb-1.5">
-                    <h4 className="font-display text-lg text-paper leading-snug">
-                      {pick(edu.field, locale)}
-                    </h4>
-                    <span className="stamp-tag shrink-0">{pick(edu.degree, locale)}</span>
-                  </div>
-                  <p className="text-rust text-sm mb-2">{edu.institution}</p>
-                  <p className="font-data text-[11px] text-inkDim mb-3">
-                    {formatDateRange(edu.start, edu.end, locale)} · {edu.location}
-                  </p>
-                  {edu.highlights && (
-                    <ul className="space-y-1.5">
-                      {edu.highlights.map((h, i) => (
-                        <li key={i} className="flex gap-2.5 text-[13px] text-ink leading-relaxed">
-                          <span className="text-rust shrink-0">—</span>
-                          {pick(h, locale)}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Certifications + languages */}
-          <div>
-            <h3 className="font-data text-[10px] tracking-widest text-inkDim uppercase mb-5">
-              {t('certs')}
-            </h3>
-
-            <div className="plate mb-6">
-              <h4 className="font-data text-[10px] tracking-widest text-inkDim uppercase mb-4">
-                {locale === 'es' ? 'Idiomas' : 'Languages'}
-              </h4>
-              <div className="space-y-3">
-                {LANGUAGE_ROWS(locale).map((l) => (
-                  <div key={l.lang} className="flex items-center justify-between">
-                    <span className="text-[13px] text-paper2">{l.lang}</span>
-                    <div className="flex items-center gap-2.5">
-                      <span className="font-data text-[10px] text-inkDim">{l.level}</span>
-                      <span className="dot-row">
-                        {[1, 2, 3, 4, 5].map((n) => (
-                          <span key={n} className={n <= l.score ? 'dot-filled' : 'dot'} />
-                        ))}
-                      </span>
-                    </div>
-                  </div>
-                ))}
+        {/* Degrees — Apple's three-up feature grid, cards stagger in by position */}
+        <div className="grid md:grid-cols-3 gap-6 mb-14">
+          {items.map((edu, i) => (
+            <ScrollReveal key={edu.id} delay={i * 100}>
+              <div className="panel text-center">
+                <p className="font-text text-[13px] text-accent mb-3">{pick(edu.degree, locale)}</p>
+                <h3 className="font-sf text-lg font-semibold text-gray1 leading-snug mb-2">
+                  {pick(edu.field, locale)}
+                </h3>
+                <p className="font-text text-[14px] text-gray2 mb-1">{edu.institution}</p>
+                <p className="font-text text-[13px] text-gray3">
+                  {formatDateRange(edu.start, edu.end, locale)}
+                </p>
               </div>
-            </div>
+            </ScrollReveal>
+          ))}
+        </div>
 
+        {/* Certification + LinkedIn — lightweight closing line, no longer a full subsection */}
+        <ScrollReveal>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center border-t border-hairline2 pt-10">
+            <span className="font-text text-[14px] text-gray2">
+              {t('drone_name')} — {t('drone_issuer')}
+            </span>
+            <span className="text-gray3" aria-hidden>·</span>
             <a
               href="https://www.linkedin.com/in/alexandre-mayo-esteiro/"
               target="_blank"
               rel="noopener noreferrer"
-              className="block border border-dashed border-line2 hover:border-rust transition-colors text-center py-3 text-sm text-inkDim hover:text-rust"
+              className="link-chevron"
             >
               {t('view_linkedin')}
             </a>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )

@@ -1,8 +1,9 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Mail, Linkedin, Github, Copy, Check } from 'lucide-react'
+import { Copy, Check } from 'lucide-react'
 import { useClipboard } from '@/lib/useClipboard'
+import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Profile } from '@/types'
 
 export default function Contact({ profile }: { profile: Profile }) {
@@ -10,88 +11,58 @@ export default function Contact({ profile }: { profile: Profile }) {
   const { copied, copy } = useClipboard()
 
   return (
-    <section id="contact" className="border-b border-line">
-      <div className="section-wrap">
-        <div className="ref-mark">{t('label')}</div>
-        <div className="ledger-rule" />
+    <section id="contact" className="bg-black">
+      <div className="section-wrap text-center">
+        <ScrollReveal>
+          <h2 className="headline mb-6">{t('heading')}</h2>
+        </ScrollReveal>
 
-        <div className="max-w-xl">
-          <h2 className="font-display text-3xl sm:text-4xl text-paper mb-6">
-            {t('heading')}
-          </h2>
-          <p className="text-ink leading-relaxed text-[15px] mb-12">
+        <ScrollReveal delay={80}>
+          <p className="font-text text-[19px] text-gray2 max-w-xl mx-auto leading-relaxed mb-12">
             {t('body')}
           </p>
+        </ScrollReveal>
 
-          <div className="border border-line divide-y divide-line">
-            <ContactRow
-              icon={<Mail size={16} />}
-              label={t('email_label')}
-              value={profile.email}
-              action={
-                <button
-                  onClick={() => copy(profile.email)}
-                  className="text-inkDim hover:text-rust transition-colors"
-                  aria-label={t('copy_email')}
-                >
-                  {copied ? <Check size={15} className="text-moss" /> : <Copy size={15} />}
-                </button>
-              }
-            />
-            <ContactRow
-              icon={<Linkedin size={16} />}
-              label={t('linkedin_label')}
-              value="alexandre-mayo-esteiro"
-              href={profile.links.linkedin}
-            />
-            <ContactRow
-              icon={<Github size={16} />}
-              label={t('github_label')}
-              value="IsNotTheReal"
-              href={profile.links.github}
-            />
+        <ScrollReveal delay={160}>
+          <div className="flex items-center justify-center gap-4 mb-16">
+            <a href={`mailto:${profile.email}`} className="btn-pill">
+              {t('email_label')}
+            </a>
+            <button onClick={() => copy(profile.email)} className="btn-pill-outline">
+              {copied ? (
+                <>
+                  <Check size={15} className="mr-1.5" /> {t('copied')}
+                </>
+              ) : (
+                <>
+                  <Copy size={15} className="mr-1.5" /> {t('copy_email')}
+                </>
+              )}
+            </button>
           </div>
-        </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={220}>
+          <div className="flex items-center justify-center gap-10 border-t border-hairline2 pt-10">
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-chevron"
+            >
+              {t('linkedin_label')}
+            </a>
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-chevron"
+            >
+              {t('github_label')}
+            </a>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )
-}
-
-function ContactRow({
-  icon,
-  label,
-  value,
-  href,
-  action,
-}: {
-  icon: React.ReactNode
-  label: string
-  value: string
-  href?: string
-  action?: React.ReactNode
-}) {
-  const content = (
-    <div className="flex items-center justify-between gap-4 p-5 group">
-      <div className="flex items-center gap-4">
-        <span className="text-rust">{icon}</span>
-        <div>
-          <div className="font-data text-[10px] tracking-widest uppercase text-inkDim">{label}</div>
-          <div className="text-[14px] text-paper2 mt-0.5">{value}</div>
-        </div>
-      </div>
-      {action ?? (
-        <span className="text-inkDim group-hover:text-rust transition-colors text-sm">→</span>
-      )}
-    </div>
-  )
-
-  if (href) {
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className="block hover:bg-carbon2 transition-colors">
-        {content}
-      </a>
-    )
-  }
-
-  return <div>{content}</div>
 }

@@ -56,16 +56,23 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className="scroll-smooth">
+    <html lang={locale} className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/*
+          Apple's actual typeface, SF Pro, isn't licensed for arbitrary web
+          embedding. Inter is the closest open alternative — same grotesque
+          structure, same optical sizing logic — so it stands in for both
+          the "SF Pro Display" and "SF Pro Text" roles referenced in
+          tailwind.config.js's font stacks.
+        */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="bg-carbon text-paper2 antialiased selection:bg-rust/30 selection:text-paper">
+      <body className="bg-black text-gray2 antialiased selection:bg-accent/25 selection:text-white">
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

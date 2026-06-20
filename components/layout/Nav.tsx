@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { useRouter, usePathname } from '@/lib/i18n/navigation'
-import { Menu, X } from 'lucide-react'
 import type { Locale } from '@/types'
 
 const NAV_IDS = ['about', 'experience', 'skills', 'education', 'contact'] as const
@@ -12,43 +11,25 @@ export default function Nav({ locale }: { locale: Locale }) {
   const t = useTranslations('nav')
   const router = useRouter()
   const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState('')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id)
-        })
-      },
-      { rootMargin: '-40% 0px -55% 0px' }
-    )
-    NAV_IDS.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-    return () => observer.disconnect()
-  }, [])
+    if (open) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
 
   const switchLocale = () => {
-    router.replace(pathname, { locale: locale === 'en' ? 'es' : 'en' })
+    router.replace(pathname, { locale: locale === 'en' ? 'es' : 'en', scroll: false })
   }
 
   const navLinks = NAV_IDS.map((id) => ({ href: `#${id}`, label: t(id), id }))
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 ${scrolled ? 'nav-surface' : ''}`}>
-      <nav className="max-w-4xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-between">
-        <a href="#" className="font-display text-lg text-paper">
-          A<span className="text-rust">.</span>M
+    <header className="fixed top-0 left-0 right-0 z-50 nav-surface">
+      <nav className="max-w-[1100px] mx-auto px-6 h-11 flex items-center justify-between">
+        <a href="#" className="font-sf text-[15px] font-semibold text-gray1">
+          Alexandre Mayo
         </a>
 
         <ul className="hidden md:flex items-center gap-7">
@@ -56,9 +37,7 @@ export default function Nav({ locale }: { locale: Locale }) {
             <li key={link.id}>
               <a
                 href={link.href}
-                className={`font-data text-[11px] tracking-wide uppercase transition-colors ${
-                  active === link.id ? 'text-rust' : 'text-inkDim hover:text-paper2'
-                }`}
+                className="font-text text-[12px] text-gray2 hover:text-gray1 transition-colors"
               >
                 {link.label}
               </a>
@@ -66,34 +45,40 @@ export default function Nav({ locale }: { locale: Locale }) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <button
             onClick={switchLocale}
-            className="font-data text-[10px] tracking-widest px-2.5 py-1 border border-line text-inkDim hover:border-rust hover:text-rust transition-colors"
+            className="font-text text-[12px] text-gray2 hover:text-gray1 transition-colors"
             aria-label="Switch language"
           >
             {locale === 'en' ? 'ES' : 'EN'}
           </button>
 
           <button
-            className="md:hidden text-inkDim hover:text-paper transition-colors"
+            className="md:hidden text-gray1"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              {open ? (
+                <path d="M1 1L17 17M1 17L17 1" stroke="currentColor" strokeWidth="1.2" />
+              ) : (
+                <path d="M1 4.5H17M1 13.5H17" stroke="currentColor" strokeWidth="1.2" />
+              )}
+            </svg>
           </button>
         </div>
       </nav>
 
       {open && (
-        <div className="md:hidden nav-surface border-t border-line px-6 py-6">
-          <ul className="flex flex-col gap-5">
+        <div className="md:hidden bg-black/98 border-t border-hairline2 px-6 py-8">
+          <ul className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="font-data text-[12px] tracking-wide uppercase text-ink hover:text-rust transition-colors"
+                  className="font-text text-[17px] text-gray1"
                 >
                   {link.label}
                 </a>

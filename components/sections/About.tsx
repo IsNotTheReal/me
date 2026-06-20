@@ -1,87 +1,83 @@
 import { useTranslations } from 'next-intl'
-import { ArrowUpRight } from 'lucide-react'
 import { pick } from '@/data'
+import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Profile, Locale } from '@/types'
 
 export default function About({ profile, locale }: { profile: Profile; locale: Locale }) {
   const t = useTranslations('about')
+  const tHero = useTranslations('hero')
+
+  const availabilityDot: Record<Profile['availability'], string> = {
+    open: 'bg-accent',
+    limited: 'bg-orange',
+    closed: 'bg-gray3',
+  }
+  const availabilityLabel: Record<Profile['availability'], string> = {
+    open: tHero('available'),
+    limited: tHero('limited'),
+    closed: tHero('closed'),
+  }
 
   return (
-    <section id="about" className="border-b border-line">
+    <section id="about" className="bg-black hairline-divider">
       <div className="section-wrap">
-        <div className="ref-mark">{t('label')}</div>
-        <div className="ledger-rule" />
+        <ScrollReveal>
+          <p className="eyebrow">{t('label')}</p>
+        </ScrollReveal>
 
-        <div className="grid md:grid-cols-[1.2fr,1fr] gap-16">
-          {/* Bio — set like an editorial pull quote, not a terminal */}
-          <div>
-            <h2 className="font-display text-3xl sm:text-4xl text-paper leading-tight mb-8">
-              {t('heading')}{' '}
-              <span className="text-rust italic">{t('heading_accent')}</span>
-            </h2>
-            <p className="text-ink leading-[1.8] text-[15px]">
-              {pick(profile.bio, locale)}
-            </p>
-          </div>
+        <ScrollReveal delay={80}>
+          <h2 className="headline max-w-3xl mx-auto">
+            {t('heading')}{' '}
+            <span className="text-gray2">{t('heading_accent')}</span>
+          </h2>
+        </ScrollReveal>
 
-          {/* Facts laid out as a ledger / index card, not a fake shell */}
-          <div className="border border-line p-6 self-start">
-            <div className="font-data text-[10px] tracking-widest text-inkDim uppercase mb-5 pb-4 border-b border-line">
-              {t('terminal_title')}
+        <ScrollReveal delay={160}>
+          <p className="font-text text-[19px] text-gray2 max-w-2xl mx-auto text-center mt-8 leading-relaxed">
+            {pick(profile.bio, locale)}
+          </p>
+        </ScrollReveal>
+
+        {/* Apple-style info row — flat, centered, separated by hairlines, not a card */}
+        <ScrollReveal delay={240}>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mt-14 pt-10 border-t border-hairline2">
+            <InfoItem label={t('field_role')} value={pick(profile.title, locale)} />
+            <InfoItem label={t('field_languages')} value={t('languages_value')} />
+            <div className="flex items-center gap-2">
+              <span className={`w-2 h-2 rounded-full ${availabilityDot[profile.availability]}`} />
+              <span className="font-text text-[15px] text-gray1">{availabilityLabel[profile.availability]}</span>
             </div>
-
-            <dl className="space-y-4 text-sm">
-              <Entry label={t('field_role')} value={pick(profile.title, locale)} />
-              <Entry label={t('field_location')} value={profile.location} />
-              <Entry label={t('field_status')} value={t('status_open')} accent />
-              <Entry label={t('field_languages')} value={t('languages_value')} />
-              <EntryLink
-                label={t('field_github')}
-                value="github.com/IsNotTheReal"
-                href={profile.links.github}
-              />
-              <EntryLink
-                label={t('field_linkedin')}
-                value="in/alexandre-mayo-esteiro"
-                href={profile.links.linkedin}
-              />
-            </dl>
           </div>
+        </ScrollReveal>
+
+        <div className="flex items-center justify-center gap-8 mt-8">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-chevron"
+          >
+            GitHub <span aria-hidden>›</span>
+          </a>
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-chevron"
+          >
+            LinkedIn <span aria-hidden>›</span>
+          </a>
         </div>
       </div>
     </section>
   )
 }
 
-function Entry({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
+function InfoItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between gap-4">
-      <dt className="font-data text-[11px] text-inkDim uppercase tracking-wide shrink-0 pt-0.5">
-        {label}
-      </dt>
-      <dd className={`text-right text-[13px] ${accent ? 'text-moss' : 'text-paper2'}`}>
-        {value}
-      </dd>
-    </div>
-  )
-}
-
-function EntryLink({ label, value, href }: { label: string; value: string; href: string }) {
-  return (
-    <div className="flex justify-between gap-4">
-      <dt className="font-data text-[11px] text-inkDim uppercase tracking-wide shrink-0 pt-0.5">
-        {label}
-      </dt>
-      <dd className="text-right text-[13px]">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-rust hover:text-paper transition-colors inline-flex items-center gap-1"
-        >
-          {value} <ArrowUpRight size={11} />
-        </a>
-      </dd>
+    <div className="text-center">
+      <div className="font-text text-[11px] uppercase tracking-wide text-gray3 mb-1">{label}</div>
+      <div className="font-text text-[15px] text-gray1">{value}</div>
     </div>
   )
 }

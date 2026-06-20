@@ -8,45 +8,37 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['"Fraunces"', 'Georgia', 'serif'],
-        body: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'monospace'],
+        // Inter stands in for SF Pro Display/Text — same grotesque
+        // structure and optical sizing axis, openly licensed for web use.
+        sf: ['Inter', '-apple-system', 'system-ui', 'sans-serif'],
+        text: ['Inter', '-apple-system', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // Carbon black — base background, not pure black
-        carbon: '#15140F',
-        carbon2: '#1B1A14',
-        // Paper / cream tones — text and surfaces
-        paper: '#F2EEE3',
-        paper2: '#E8E2D2',
-        // Aged paper card surface (slightly darker than bg, warm)
-        plate: '#1E1C16',
-        line: '#332F24',
-        line2: '#403B2C',
-        // Muted ink tones for secondary text
-        ink: '#A39C87',
-        inkDim: '#736C5B',
-        // Single accent — burnt rust/terracotta. No gradients.
-        rust: '#C4622D',
-        rustDim: '#8C4620',
-        // Supporting stamp colors (used sparingly, flat, no glow)
-        moss: '#6B7A4F',
-        slate: '#5B7385',
+        // True Apple black — not navy-tinted, not warm
+        black: '#000000',
+        // Apple's near-black surface (their cards on dark sections)
+        surface: '#1D1D1F',
+        // Apple's hairline grays — base tone for outline borders,
+        // and a slightly darker tone for section dividers
+        hairline: '#424245',
+        hairline2: '#2D2D2F',
+        // Apple's text grays
+        gray1: '#F5F5F7',   // near-white headlines
+        gray2: '#A1A1A6',   // secondary body text
+        gray3: '#6E6E73',   // tertiary / disabled
+        // Single accent — green, used very sparingly.
+        // Doubles as the "available" status color since both now
+        // share the same hue family; keeping two near-identical
+        // greens around would just be redundant tokens.
+        accent: '#30D158',
+        // Status colors used the Apple way: flat, never glowing
+        orange: '#FF9500',
       },
-      animation: {
-        'rise': 'rise 0.7s cubic-bezier(0.22,1,0.36,1) forwards',
-        'stamp': 'stamp 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards',
-      },
-      keyframes: {
-        rise: {
-          from: { opacity: '0', transform: 'translateY(14px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
-        stamp: {
-          '0%': { opacity: '0', transform: 'scale(1.4) rotate(-8deg)' },
-          '60%': { opacity: '1', transform: 'scale(0.95) rotate(-8deg)' },
-          '100%': { opacity: '1', transform: 'scale(1) rotate(-8deg)' },
-        },
+      fontSize: {
+        // Apple's actual hero scale (their h1 is enormous)
+        'hero': ['clamp(2.75rem, 8vw, 6rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'display': ['clamp(2.25rem, 5vw, 3.5rem)', { lineHeight: '1.07', letterSpacing: '-0.015em' }],
+        'headline': ['clamp(1.75rem, 3vw, 2.5rem)', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
       },
     },
   },

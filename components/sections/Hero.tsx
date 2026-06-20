@@ -1,78 +1,57 @@
 import { useTranslations } from 'next-intl'
-import { ArrowRight } from 'lucide-react'
 import { pick } from '@/data'
 import type { Profile, Locale } from '@/types'
-
-const AVAILABILITY_DOT: Record<Profile['availability'], string> = {
-  open: 'bg-moss',
-  limited: 'bg-rust',
-  closed: 'bg-inkDim',
-}
 
 export default function Hero({ profile, locale }: { profile: Profile; locale: Locale }) {
   const t = useTranslations('hero')
 
-  const availLabel = {
-    open: t('available'),
-    limited: t('limited'),
-    closed: t('closed'),
-  }[profile.availability]
-
   return (
-    <section id="hero" className="relative grain border-b border-line">
-      <div className="section-wrap pt-32 sm:pt-40 pb-20">
-        {/* Filing reference, like a catalog card number */}
-        <div className="flex items-center gap-3 mb-10 font-data text-[11px] text-inkDim tracking-wide">
-          <span>REF. 2026-DEV-01</span>
-          <span className="w-1 h-1 rounded-full bg-inkDim" />
-          <span className="flex items-center gap-1.5">
-            <span className={`w-1.5 h-1.5 rounded-full ${AVAILABILITY_DOT[profile.availability]}`} />
-            {availLabel}
-          </span>
-        </div>
+    <section id="hero" className="relative bg-black">
+      <div className="max-w-[980px] mx-auto px-6 pt-40 sm:pt-48 pb-24 text-center">
+        {/* Eyebrow — Apple always names the "product line" above the headline */}
+        <p className="eyebrow">{profile.location}</p>
 
-        {/* Name — serif display, the real signature element */}
-        <h1 className="font-display text-[2.75rem] sm:text-6xl lg:text-7xl font-medium text-paper leading-[0.98] tracking-tight mb-6">
+        {/* The headline — this IS the design. No icon, no terminal, no gimmick. */}
+        <h1 className="font-sf text-hero font-semibold text-gray1">
           {profile.name}
         </h1>
 
-        {/* Title set as a subtitle, not a typewriter gimmick */}
-        <p className="font-display text-xl sm:text-2xl text-rust italic mb-8 max-w-xl">
+        <p className="font-sf text-display font-semibold text-gray2 mt-2">
           {pick(profile.title, locale)}
         </p>
 
-        <p className="text-ink leading-relaxed max-w-md mb-12 text-[15px]">
+        <p className="font-text text-[19px] sm:text-[21px] text-gray2 max-w-2xl mx-auto mt-6 leading-relaxed">
           {pick(profile.tagline, locale)}
         </p>
 
-        <div className="flex flex-wrap items-center gap-4 mb-20">
-          <a href="#experience" className="btn-rust">
-            {t('cta_projects')}
-            <ArrowRight size={15} />
+        {/* Apple's link-pair pattern: "Buy" / "Learn more" */}
+        <div className="flex items-center justify-center gap-8 mt-8">
+          <a href="#contact" className="text-accent font-text text-[19px] hover:underline">
+            {t('cta_contact')} <span aria-hidden>›</span>
           </a>
-          <a href="#contact" className="btn-outline">
-            {t('cta_contact')}
+          <a href="#experience" className="text-accent font-text text-[19px] hover:underline">
+            {t('cta_projects')} <span aria-hidden>›</span>
           </a>
         </div>
+      </div>
 
-        {/* Ledger-style stat row instead of glowing numbers */}
-        <div className="grid grid-cols-3 border-t border-line pt-6">
-          <HeroStat value="03" label={t('stats_experience')} />
-          <HeroStat value="20+" label={t('stats_tech')} />
-          <HeroStat value="04" label={t('stats_languages')} />
+      {/* Apple's spec strip — three huge numbers, centered, the visual climax of the hero */}
+      <div className="border-t border-hairline2">
+        <div className="max-w-[980px] mx-auto px-6 py-14 grid grid-cols-3 gap-4">
+          <div className="spec-block">
+            <div className="spec-number">3</div>
+            <div className="spec-label">{t('stats_experience')}</div>
+          </div>
+          <div className="spec-block">
+            <div className="spec-number">20+</div>
+            <div className="spec-label">{t('stats_tech')}</div>
+          </div>
+          <div className="spec-block">
+            <div className="spec-number">4</div>
+            <div className="spec-label">{t('stats_languages')}</div>
+          </div>
         </div>
       </div>
     </section>
-  )
-}
-
-function HeroStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="border-l border-line pl-5 first:border-l-0 first:pl-0">
-      <div className="font-display text-2xl text-paper">{value}</div>
-      <div className="font-data text-[10px] tracking-widest text-inkDim mt-1 uppercase">
-        {label}
-      </div>
-    </div>
   )
 }
