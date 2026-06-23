@@ -13,7 +13,7 @@
     "closed": "No disponible",
     "cta_projects": "Ver mi trabajo",
     "cta_contact": "Contactar",
-    "stats_experience": "Prácticas",
+    "stats_experience": "Empresas",
     "stats_tech": "Tecnologías",
     "stats_languages": "Idiomas"
   },
@@ -66,7 +66,7 @@
     "copied": "¡Copiado!"
   },
   "footer": {
-    "built": "Construido con Next.js · Desplegado en Vercel"
+    "built": "Construido con Next.js"
   },
   "lang_switch": "EN"
 }

@@ -13,7 +13,7 @@
     "closed": "Not available",
     "cta_projects": "View my work",
     "cta_contact": "Get in touch",
-    "stats_experience": "Internships",
+    "stats_experience": "Companies",
     "stats_tech": "Technologies",
     "stats_languages": "Languages"
   },
@@ -66,7 +66,7 @@
     "copied": "Copied!"
   },
   "footer": {
-    "built": "Built with Next.js · Deployed on Vercel"
+    "built": "Built with Next.js"
   },
   "lang_switch": "ES"
 }
