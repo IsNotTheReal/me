@@ -2,6 +2,41 @@ import type { Experience } from '@/types'
 
 export const experience: Experience[] = [
   {
+    id: 'beondish-2026',
+    company: 'Beondish',
+    role: {
+      en: 'DevOps Specialist',
+      es: 'Especialista en DevOps',
+    },
+    type: 'contract',
+    start: '2026-07',
+    end: '2026-18',
+    location: 'Santiago de Compostela, Galicia, España',
+    summary: {
+      en: '',
+      es: '',
+    },
+    highlights: [
+      {
+        en: '',
+        es: '',
+      },
+      {
+        en: '',
+        es: '',
+      },
+      {
+        en: '',
+        es: '',
+      },
+      {
+        en: '',
+        es: '',
+      },
+    ],
+    tags: ['Flutter', 'REST API', 'IT Security'],
+  },
+  {
     id: 'colaiste-2025',
     company: 'Coláiste Dhúlaigh College of Further Education',
     role: {

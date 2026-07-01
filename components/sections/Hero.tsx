@@ -39,7 +39,7 @@ export default function Hero({ profile, locale }: { profile: Profile; locale: Lo
       <div className="border-t border-hairline2">
         <div className="max-w-[980px] mx-auto px-6 py-14 grid grid-cols-3 gap-4">
           <div className="spec-block">
-            <div className="spec-number">3</div>
+            <div className="spec-number">4</div>
             <div className="spec-label">{t('stats_experience')}</div>
           </div>
           <div className="spec-block">
