@@ -12,6 +12,12 @@ export const experience: Experience[] = [
     start: '2026-07',
     end: '2026-18',
     location: 'Santiago de Compostela, Galicia, España',
+    summary: {
+      en: '',
+      es: '',
+    },
+    highlights: [
+    ],
     tags: ['Flutter', 'REST API', 'IT Security'],
   },
   {
