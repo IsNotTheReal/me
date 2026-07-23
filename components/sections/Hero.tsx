@@ -9,7 +9,7 @@ export default function Hero({ profile, locale }: { profile: Profile; locale: Lo
     <section id="hero" className="relative bg-black">
       <div className="max-w-[980px] mx-auto px-6 pt-40 sm:pt-48 pb-24 text-center">
         {/* Eyebrow — Apple always names the "product line" above the headline */}
-        <p className="eyebrow">{profile.location}</p>
+        <p className="eyebrow">{pick(profile.location, locale)}</p>
 
         {/* The headline — this IS the design. No icon, no terminal, no gimmick. */}
         <h1 className="font-sf text-hero font-semibold text-gray1">

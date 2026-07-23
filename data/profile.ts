@@ -14,7 +14,10 @@ export const profile: Profile = {
     en: 'Junior Software Developer specialising in cybersecurity and IT infrastructure. My background spans full-stack web development, systems administration, and international experience in Dublin. I combine hands-on technical depth with continuous learning and a drive to build systems that are both reliable and secure.',
     es: 'Desarrollador de Software Junior especializado en Ciberseguridad e Infraestructura IT. Trayectoria que combina desarrollo de aplicaciones con administración de sistemas y redes, con experiencia internacional consolidada en Dublín. Aprendizaje continuo, adaptación a entornos tecnológicos dinámicos y enfoque orientado a la resolución de problemas.',
   },
-  location: 'Santiago de Compostela, Galicia, España',
+  location: {
+    en: 'Santiago de Compostela, Galicia, Spain',
+    es: 'Santiago de Compostela, Galicia, España',
+  },
   email: 'contact@alexandremayo.com',
   availability: 'open',
   links: {
