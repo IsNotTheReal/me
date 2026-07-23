@@ -23,7 +23,7 @@ export default function Footer() {
           </a>
         </div>
         <p className="font-text text-[12px] text-gray3 text-center">
-          Copyright © {year} Alexandre Mayo Esteiro. {t('built')}
+          Copyright © {year} Alexandre Mayo Esteiro. All rights reserved.
         </p>
       </div>
     </footer>

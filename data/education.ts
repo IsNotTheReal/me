@@ -14,7 +14,10 @@ export const education: Education[] = [
     },
     start: '2024-09',
     end: '2025-06',
-    location: 'Santiago de Compostela',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
     highlights: [
       {
         en: 'Full-stack web development: HTML5, CSS3, JavaScript, PHP, SQL, deployment',
@@ -35,7 +38,10 @@ export const education: Education[] = [
     },
     start: '2023-09',
     end: '2024-06',
-    location: 'Santiago de Compostela',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
     highlights: [
       {
         en: 'Network & systems security, vulnerability analysis, environment hardening',
@@ -56,7 +62,10 @@ export const education: Education[] = [
     },
     start: '2021-09',
     end: '2023-06',
-    location: 'Santiago de Compostela',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
     highlights: [
       {
         en: 'Java, Python, Dart/Flutter, cross-platform architecture, database design',

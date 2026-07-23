@@ -65,8 +65,5 @@
     "copy_email": "Copiar email",
     "copied": "¡Copiado!"
   },
-  "footer": {
-    "built": "Construido con Next.js"
-  },
   "lang_switch": "EN"
 }

@@ -11,7 +11,10 @@ export const experience: Experience[] = [
     type: 'contract',
     start: '2026-07',
     end: '2026-08',
-    location: 'Santiago de Compostela, Galicia, España',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
     summary: {
       en: '',
       es: '',
@@ -30,7 +33,10 @@ export const experience: Experience[] = [
     type: 'internship',
     start: '2025-09',
     end: '2025-11',
-    location: 'Dublín, Irlanda',
+    location: {
+      en: 'Dublin, Ireland',
+      es: 'Dublín, Irlanda',
+    },
     summary: {
       en: 'IT support and network administration internship at an Irish further education college, working entirely in English.',
       es: 'Prácticas de soporte IT y administración de redes en un centro de educación superior irlandés, en entorno completamente en inglés.',
@@ -65,7 +71,10 @@ export const experience: Experience[] = [
     type: 'internship',
     start: '2025-04',
     end: '2025-06',
-    location: 'Santiago de Compostela, Galicia, España',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
     summary: {
       en: 'Full-stack web development internship at a digital health startup, integrating AI tooling into product workflows.',
       es: 'Prácticas de desarrollo web full-stack en una startup de salud digital, con integración de herramientas de IA.',
@@ -96,7 +105,10 @@ export const experience: Experience[] = [
     type: 'internship',
     start: '2023-04',
     end: '2023-06',
-    location: 'Santiago de Compostela, Galicia, España',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
     summary: {
       en: 'Full-stack development internship building production web applications with Symfony, PHP, and MySQL.',
       es: 'Prácticas de desarrollo full-stack construyendo aplicaciones web en producción con Symfony, PHP y MySQL.',

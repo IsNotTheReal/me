@@ -15,7 +15,7 @@ export interface Profile {
   title: LocalizedString
   tagline: LocalizedString
   bio: LocalizedString
-  location: string
+  location: LocalizedString
   email: string
   availability: 'open' | 'limited' | 'closed'
   links: {
@@ -32,7 +32,7 @@ export interface Experience {
   type: 'internship' | 'fulltime' | 'contract' | 'freelance'
   start: string   // YYYY-MM
   end: string | null
-  location: string
+  location: LocalizedString
   summary: LocalizedString
   highlights: LocalizedString[]
   tags: string[]
@@ -45,7 +45,7 @@ export interface Education {
   field: LocalizedString
   start: string
   end: string | null
-  location: string
+  location: LocalizedString
   highlights?: LocalizedString[]
 }
 
