@@ -35,7 +35,7 @@ export default function ExperienceSection({
                     {formatDateRange(exp.start, exp.end, locale)}
                   </p>
                   <p className="font-text text-[13px] text-gray3 mt-1">
-                    {getDuration(exp.start, exp.end, locale)} · {exp.location}
+                    {getDuration(exp.start, exp.end, locale)} · {pick(exp.location, locale)}
                   </p>
                 </div>
 
