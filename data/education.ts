@@ -2,6 +2,24 @@ import type { Education } from '@/types'
 
 export const education: Education[] = [
   {
+    id: 'ai-big-data-2027',
+    institution: 'IES San Clemente',
+    degree: {
+      en: 'Specialist Certificate',
+      es: 'Curso de Especialización',
+    },
+    field: {
+      en: 'Artificial Intelligence and Big Data',
+      es: 'Inteligencia Artificial y Big Data',
+    },
+    start: '2026-10',
+    end: '2027-06',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
+  },
+  {
     id: 'daw-2025',
     institution: 'IES San Clemente',
     degree: {
@@ -72,5 +90,23 @@ export const education: Education[] = [
         es: 'Java, Python, Dart/Flutter, arquitectura multiplataforma, diseño de bases de datos',
       },
     ],
+  },
+  {
+    id: 'usc-geography-history-2021',
+    institution: 'Universidade de Santiago de Compostela',
+    degree: {
+      en: 'University studies',
+      es: 'Estudios universitarios',
+    },
+    field: {
+      en: 'Faculty of Geography and History',
+      es: 'Facultad de Geografía e Historia',
+    },
+    start: '2020-09',
+    end: '2021-06',
+    location: {
+      en: 'Santiago de Compostela, Galicia, Spain',
+      es: 'Santiago de Compostela, Galicia, España',
+    },
   },
 ]
