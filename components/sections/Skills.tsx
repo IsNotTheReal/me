@@ -23,7 +23,7 @@ export default function Skills({
   const current = categories.find((c) => c.id === active) ?? categories[0]
 
   return (
-    <section id="skills" className="bg-black hairline-divider">
+    <section id="skills" className="hairline-divider bg-white">
       <div className="section-wrap-wide">
         <ScrollReveal>
           <p className="eyebrow">{t('label')}</p>
@@ -33,16 +33,15 @@ export default function Skills({
         </ScrollReveal>
 
         <ScrollReveal delay={160}>
-          {/* Apple's tab-strip pattern, like their "Compare" nav (Design / Camera / Chip...) */}
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-14 border-b border-hairline2 pb-px">
+          <div className="mb-12 flex flex-wrap items-center justify-center gap-3">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActive(cat.id)}
-                className={`font-text text-[15px] pb-4 border-b-2 transition-colors ${
+                className={`rounded-full border px-4 py-2.5 font-text text-[12px] uppercase tracking-[0.14em] transition-all ${
                   active === cat.id
-                    ? 'text-gray1 border-accent'
-                    : 'text-gray3 border-transparent hover:text-gray2'
+                    ? 'border-gray1 bg-gray1 text-white'
+                    : 'border-hairline2 bg-white text-gray3 hover:border-gray3 hover:text-gray1'
                 }`}
               >
                 {pick(cat.label, locale)}
@@ -51,16 +50,26 @@ export default function Skills({
           </div>
         </ScrollReveal>
 
-        {/* Tech-spec table — Apple's actual spec sheet typography */}
         {current && (
           <ScrollReveal delay={220}>
-            <div className="max-w-2xl mx-auto divide-y divide-hairline2">
+            <div className="mx-auto max-w-3xl space-y-3">
               {current.skills.map((skill) => (
-                <div key={skill.name} className="flex items-center justify-between py-4">
+                <div
+                  key={skill.name}
+                  className="flex items-center justify-between gap-6 border-b border-hairline2 px-1 py-4 sm:px-2"
+                >
                   <span className="font-text text-[17px] text-gray1">{skill.name}</span>
-                  <span className="font-text text-[13px] text-gray3">
-                    {LEVEL_LABEL_SHORT[skill.level]}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <div className="h-1 w-24 overflow-hidden bg-hairline2 sm:w-28">
+                      <div
+                        className="h-full bg-gray1"
+                        style={{ width: `${skill.level * 20}%` }}
+                      />
+                    </div>
+                    <span className="font-text text-[11px] uppercase tracking-[0.14em] text-gray3">
+                      {LEVEL_LABEL_SHORT[skill.level]}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>

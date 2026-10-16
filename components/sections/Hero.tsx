@@ -6,49 +6,59 @@ export default function Hero({ profile, locale }: { profile: Profile; locale: Lo
   const t = useTranslations('hero')
 
   return (
-    <section id="hero" className="relative bg-black">
-      <div className="max-w-[980px] mx-auto px-6 pt-40 sm:pt-48 pb-24 text-center">
-        {/* Eyebrow — Apple always names the "product line" above the headline */}
-        <p className="eyebrow">{pick(profile.location, locale)}</p>
+    <section id="hero" className="relative isolate overflow-hidden pt-28 sm:pt-32">
+      <div className="section-wrap pt-10 sm:pt-12">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mb-6 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-gray3">
+            <span className="h-1.5 w-1.5 rounded-full bg-gray3" />
+            {pick(profile.location, locale)}
+          </div>
 
-        {/* The headline — this IS the design. No icon, no terminal, no gimmick. */}
-        <h1 className="font-sf text-hero font-semibold text-gray1">
-          {profile.name}
-        </h1>
+          <h1 className="font-sf text-hero font-semibold tracking-[-0.07em] text-gray1">
+            {profile.name}
+          </h1>
 
-        <p className="font-sf text-display font-semibold text-gray2 mt-2">
-          {pick(profile.title, locale)}
-        </p>
+          <p className="mt-4 font-sf text-display font-semibold tracking-[-0.05em] text-gray2">
+            {pick(profile.title, locale)}
+          </p>
 
-        <p className="font-text text-[19px] sm:text-[21px] text-gray2 max-w-2xl mx-auto mt-6 leading-relaxed">
-          {pick(profile.tagline, locale)}
-        </p>
+          <p className="mx-auto mt-6 max-w-2xl font-text text-[19px] leading-relaxed text-gray2 sm:text-[21px]">
+            {pick(profile.tagline, locale)}
+          </p>
 
-        {/* Apple's link-pair pattern: "Buy" / "Learn more" */}
-        <div className="flex items-center justify-center gap-8 mt-8">
-          <a href="#contact" className="text-accent font-text text-[19px] hover:underline">
-            {t('cta_contact')} <span aria-hidden>›</span>
-          </a>
-          <a href="#experience" className="text-accent font-text text-[19px] hover:underline">
-            {t('cta_projects')} <span aria-hidden>›</span>
-          </a>
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="#contact" className="btn-pill">
+              {t('cta_contact')}
+            </a>
+            <a href="#experience" className="btn-pill-outline">
+              {t('cta_projects')}
+            </a>
+          </div>
         </div>
-      </div>
 
-      {/* Apple's spec strip — three huge numbers, centered, the visual climax of the hero */}
-      <div className="border-t border-hairline2">
-        <div className="max-w-[980px] mx-auto px-6 py-14 grid grid-cols-3 gap-4">
-          <div className="spec-block">
-            <div className="spec-number">4</div>
-            <div className="spec-label">{t('stats_experience')}</div>
+        <div className="mt-16 grid gap-5 lg:grid-cols-[1.3fr_0.7fr]">
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="stat-card">
+              <p className="font-text text-[11px] uppercase tracking-[0.18em] text-gray3">{t('stats_experience')}</p>
+              <p className="mt-4 font-sf text-4xl font-semibold tracking-[-0.05em] text-gray1">4</p>
+            </div>
+            <div className="stat-card">
+              <p className="font-text text-[11px] uppercase tracking-[0.18em] text-gray3">{t('stats_tech')}</p>
+              <p className="mt-4 font-sf text-4xl font-semibold tracking-[-0.05em] text-gray1">20+</p>
+            </div>
+            <div className="stat-card">
+              <p className="font-text text-[11px] uppercase tracking-[0.18em] text-gray3">{t('stats_languages')}</p>
+              <p className="mt-4 font-sf text-4xl font-semibold tracking-[-0.05em] text-gray1">4</p>
+            </div>
           </div>
-          <div className="spec-block">
-            <div className="spec-number">20+</div>
-            <div className="spec-label">{t('stats_tech')}</div>
-          </div>
-          <div className="spec-block">
-            <div className="spec-number">4</div>
-            <div className="spec-label">{t('stats_languages')}</div>
+
+          <div className="border-l border-hairline2 py-3 pl-6">
+            <p className="font-text text-[11px] uppercase tracking-[0.16em] text-gray3">Focus</p>
+            <ul className="mt-5 space-y-3 text-sm text-gray2">
+              <li>Full-stack product development</li>
+              <li>Cybersecurity and resilient systems</li>
+              <li>IT operations and infrastructure</li>
+            </ul>
           </div>
         </div>
       </div>

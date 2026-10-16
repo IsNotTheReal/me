@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { setRequestLocale } from 'next-intl/server'
@@ -6,6 +7,8 @@ import { routing } from '@/lib/i18n/routing'
 import { profile, pick } from '@/data'
 import type { Locale } from '@/types'
 import '../globals.css'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -56,22 +59,7 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className="scroll-smooth" data-scroll-behavior="smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/*
-          Apple's actual typeface, SF Pro, isn't licensed for arbitrary web
-          embedding. Inter is the closest open alternative — same grotesque
-          structure, same optical sizing logic — so it stands in for both
-          the "SF Pro Display" and "SF Pro Text" roles referenced in
-          tailwind.config.js's font stacks.
-        */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang={locale} className={`${inter.className} scroll-smooth`} data-scroll-behavior="smooth">
       <body className="bg-black text-gray2 antialiased selection:bg-accent/25 selection:text-white">
         <NextIntlClientProvider messages={messages}>
           {children}

@@ -10,7 +10,7 @@ export const experience: Experience[] = [
     },
     type: 'contract',
     start: '2026-07',
-    end: '2026-08',
+    end: '2026-09',
     location: {
       en: 'Santiago de Compostela, Galicia, Spain',
       es: 'Santiago de Compostela, Galicia, España',

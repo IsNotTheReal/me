@@ -19,54 +19,56 @@ export default function About({ profile, locale }: { profile: Profile; locale: L
   }
 
   return (
-    <section id="about" className="bg-black hairline-divider">
+    <section id="about" className="hairline-divider bg-white">
       <div className="section-wrap">
         <ScrollReveal>
           <p className="eyebrow">{t('label')}</p>
         </ScrollReveal>
 
         <ScrollReveal delay={80}>
-          <h2 className="headline max-w-3xl mx-auto">
+          <h2 className="headline mx-auto max-w-4xl">
             {t('heading')}{' '}
             <span className="text-gray2">{t('heading_accent')}</span>
           </h2>
         </ScrollReveal>
 
-        <ScrollReveal delay={160}>
-          <p className="font-text text-[19px] text-gray2 max-w-2xl mx-auto text-center mt-8 leading-relaxed">
-            {pick(profile.bio, locale)}
-          </p>
-        </ScrollReveal>
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <ScrollReveal delay={160}>
+            <div className="space-y-6">
+              <p className="font-text text-[19px] leading-relaxed text-gray2 sm:text-[21px]">
+                {pick(profile.bio, locale)}
+              </p>
 
-        {/* Apple-style info row — flat, centered, separated by hairlines, not a card */}
-        <ScrollReveal delay={240}>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mt-14 pt-10 border-t border-hairline2">
-            <InfoItem label={t('field_role')} value={pick(profile.title, locale)} />
-            <InfoItem label={t('field_languages')} value={t('languages_value')} />
-            <div className="flex items-center gap-2">
-              <span className={`w-2 h-2 rounded-full ${availabilityDot[profile.availability]}`} />
-              <span className="font-text text-[15px] text-gray1">{availabilityLabel[profile.availability]}</span>
+              <div className="flex flex-wrap items-center gap-5 pt-2">
+                <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="link-chevron">
+                  GitHub <span aria-hidden>›</span>
+                </a>
+                <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="link-chevron">
+                  LinkedIn <span aria-hidden>›</span>
+                </a>
+              </div>
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
 
-        <div className="flex items-center justify-center gap-8 mt-8">
-          <a
-            href={profile.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-chevron"
-          >
-            GitHub <span aria-hidden>›</span>
-          </a>
-          <a
-            href={profile.links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-chevron"
-          >
-            LinkedIn <span aria-hidden>›</span>
-          </a>
+          <ScrollReveal delay={240}>
+            <div className="panel">
+              <div className="mb-6 flex items-center justify-between gap-3">
+                <div>
+                  <p className="font-text text-[11px] uppercase tracking-[0.18em] text-gray3">{t('field_role')}</p>
+                  <p className="mt-2 font-sf text-[20px] font-semibold text-gray1">{pick(profile.title, locale)}</p>
+                </div>
+                <div className="flex items-center gap-2 border border-hairline2 bg-surface px-2.5 py-1.5">
+                  <span className={`h-2 w-2 rounded-full ${availabilityDot[profile.availability]}`} />
+                  <span className="font-text text-[12px] text-gray1">{availabilityLabel[profile.availability]}</span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <InfoItem label={t('field_languages')} value={t('languages_value')} />
+                <InfoItem label={t('field_location')} value={pick(profile.location, locale)} />
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -75,9 +77,9 @@ export default function About({ profile, locale }: { profile: Profile; locale: L
 
 function InfoItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="text-center">
-      <div className="font-text text-[11px] uppercase tracking-wide text-gray3 mb-1">{label}</div>
-      <div className="font-text text-[15px] text-gray1">{value}</div>
+    <div className="flex items-center justify-between gap-3 border-b border-hairline2 py-3">
+      <span className="font-text text-[11px] uppercase tracking-[0.18em] text-gray3">{label}</span>
+      <span className="max-w-[60%] text-right font-text text-[14px] text-gray1">{value}</span>
     </div>
   )
 }

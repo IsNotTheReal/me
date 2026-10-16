@@ -27,17 +27,20 @@ export default function Nav({ locale }: { locale: Locale }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 nav-surface">
-      <nav className="max-w-[1100px] mx-auto px-6 h-11 flex items-center justify-between">
-        <a href="#" className="font-sf text-[15px] font-semibold text-gray1">
-          Alexandre Mayo
+      <nav className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-6 sm:px-8">
+        <a href="#" className="inline-flex items-center gap-3 text-gray1">
+          <span className="flex h-8 w-8 items-center justify-center border border-hairline font-sf text-[11px] font-semibold tracking-[0.1em] text-gray1">
+            AM
+          </span>
+          <span className="font-sf text-[14px] font-semibold tracking-[-0.04em]">Alexandre Mayo</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-7">
+        <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
                 href={link.href}
-                className="font-text text-[12px] text-gray2 hover:text-gray1 transition-colors"
+                className="font-text text-[12px] uppercase tracking-[0.12em] text-gray2 transition-colors hover:text-gray1"
               >
                 {link.label}
               </a>
@@ -45,17 +48,17 @@ export default function Nav({ locale }: { locale: Locale }) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={switchLocale}
-            className="font-text text-[12px] text-gray2 hover:text-gray1 transition-colors"
+            className="border border-hairline2 px-3 py-2 font-text text-[11px] uppercase tracking-[0.12em] text-gray2 transition-colors hover:border-gray3 hover:text-gray1"
             aria-label="Switch language"
           >
             {locale === 'en' ? 'ES' : 'EN'}
           </button>
 
           <button
-            className="md:hidden text-gray1"
+            className="border border-hairline2 p-2.5 text-gray1 md:hidden"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
@@ -71,14 +74,14 @@ export default function Nav({ locale }: { locale: Locale }) {
       </nav>
 
       {open && (
-        <div className="md:hidden bg-black/98 border-t border-hairline2 px-6 py-8">
+        <div className="border-t border-hairline2 bg-white px-6 py-8 md:hidden">
           <ul className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="font-text text-[17px] text-gray1"
+                  className="font-sf text-[20px] font-medium text-gray1"
                 >
                   {link.label}
                 </a>
