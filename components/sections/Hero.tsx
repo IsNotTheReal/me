@@ -36,7 +36,7 @@ export default function Hero({ profile, locale }: { profile: Profile; locale: Lo
           </div>
         </div>
 
-        <div className="mt-16 grid gap-5 lg:grid-cols-[1.3fr_0.7fr]">
+        <div className="mx-auto mt-16 max-w-3xl">
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="stat-card">
               <p className="font-text text-[11px] uppercase tracking-[0.18em] text-gray3">{t('stats_experience')}</p>
@@ -48,17 +48,8 @@ export default function Hero({ profile, locale }: { profile: Profile; locale: Lo
             </div>
             <div className="stat-card">
               <p className="font-text text-[11px] uppercase tracking-[0.18em] text-gray3">{t('stats_languages')}</p>
-              <p className="mt-4 font-sf text-4xl font-semibold tracking-[-0.05em] text-gray1">4</p>
+              <p className="mt-4 font-sf text-4xl font-semibold tracking-[-0.05em] text-gray1">5</p>
             </div>
-          </div>
-
-          <div className="border-l border-hairline2 py-3 pl-6">
-            <p className="font-text text-[11px] uppercase tracking-[0.16em] text-gray3">Focus</p>
-            <ul className="mt-5 space-y-3 text-sm text-gray2">
-              <li>Full-stack product development</li>
-              <li>Cybersecurity and resilient systems</li>
-              <li>IT operations and infrastructure</li>
-            </ul>
           </div>
         </div>
       </div>
